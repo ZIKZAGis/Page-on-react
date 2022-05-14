@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './components/app/App';
+import ReactDOM from 'react-dom';
+import { product } from './components/moke/moke';
+import ProductPage from './components/product-page/product-page'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const rootElement = document.getElementById('root')
+ReactDOM.render(<ProductPage product={product} />, rootElement);
+
+
+
+// import App from './components/app/App';
+// ReactDOM.render(App({prop: 5, prop2: 17}), rootElement);

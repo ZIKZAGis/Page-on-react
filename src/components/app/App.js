@@ -1,9 +1,11 @@
-export default function App() {
+import React from 'react';
+
+function App({prop, prop2}) {
   return (
-    <div>
-      <header>
-        <h1>Заголовок</h1>
-      </header>
-    </div>
+    <>
+     <p>{prop} * {prop2} = {prop * prop2}</p> 
+    </>
   );
 }
+
+export default App;
