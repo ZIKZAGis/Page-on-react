@@ -1,37 +1,67 @@
-import Title from "../title";
-import Image from "../image";
-import ProductPrice from "../price";
-import Counter from "../counter"
-import Description from "../description";
-import ShowComment from "../comments";
-import Popularity from "../popularity";
-import Test from "../test-component";
+import Title from "../title/title";
+import Image from "../elements/image";
+import ProductPrice from "../price/price";
+import Description from "../description/description";
+import ShowComment from "../comments/comments";
+import Tabs from "../tabs/tabs"
+import Popularity from "../popularity/popularity";
+import {
+    StyledProductPage,
+    Header,
+    ProductWrapper,
+    ProductInfo,
+    ProductInfoLine,
+    PageCounter,
+    BuyButton,
+    DeliveryValue
+  } from "./styled";
 
 export default function ProductPage({ product }) {
+    const tabs = [
+        {
+          title: "Описание",
+          content: <Description text={product.description} />
+        },
+        {
+          title: "Комментарии",
+          content: <ShowComment comments={product.comments} />
+        }
+      ];
+
     return(
-        <section>
-            <Title>{product.name}</Title>
-            <Test width="400" isRed/>
-            <Test height="100" width="450" color="orange"/>
-            <div style={{display: "flex"}}>
-                <Image src={product.src} alt={product.name} />
-                <div>
-                    <p>Цена: <ProductPrice price={product.price} /></p>
-                    <div>Колличество: <Counter /></div>
-                    <p>
-                        <div>Доставка: {product.delivery}</div>
-                    </p>
-                    <button type="button">Купить</button>
+        <StyledProductPage>
+            <Header>
+                <Title>{product.name}</Title>
+            </Header>
+            <ProductWrapper>
+                <Image
+                    width="200"
+                    height="257"
+                    maxWidth="200"
+                    src={product.src}
+                    alt={product.name}
+                />
+                <ProductInfo>
+                    <ProductInfoLine>
+                        Цена: {" "} <ProductPrice price={product.price} />
+                    </ProductInfoLine>
+                    <ProductInfoLine>
+                        Колличество: {" "} <PageCounter />
+                    </ProductInfoLine>
+                    <ProductInfoLine>
+                        <span>Доставка:</span>
+                        <DeliveryValue>
+                            {product.delivery}
+                        </DeliveryValue>
+                    </ProductInfoLine>
+                    <BuyButton size="large">Купить</BuyButton>
                     <p>
                         <Popularity count={product.comments.length}/>
                     </p>
-                </div>
-            </div>
-            <Description>{product.description}</Description>
-            <div>
-                <ShowComment comments={product.comments}/>
-            </div>
-        </section>
+                </ProductInfo>
+            </ProductWrapper>
+            <Tabs tabs={tabs} tabIndex={1} />
+        </StyledProductPage>
     )
 
 }

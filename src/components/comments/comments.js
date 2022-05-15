@@ -1,10 +1,10 @@
 import React from "react";
+import Button from "../button/button";
 
 export default function ShowComment ({comments}) {
     if (comments.length > 0) {
         return (
             <>
-                <h2>Комментарии</h2>
                 <ul>
                     {comments && 
                     comments.map(({id, userName, comment}) => (
@@ -14,6 +14,7 @@ export default function ShowComment ({comments}) {
                         </li>
                     ))}
                 </ul>
+                <Button>Показать Ещё</Button>
             </>
         );
     }
