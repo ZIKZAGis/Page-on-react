@@ -1,9 +1,10 @@
-import Button from "../button/button"
+import { DescriptionButton } from './styled';
+
 export default function Description ({text}) {
     return (
         <>
             {text}
-            <Button type="button">Подробнее</Button>
+            <DescriptionButton type="button">Подробнее</DescriptionButton>
         </>
     )
 }

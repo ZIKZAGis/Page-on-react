@@ -10,7 +10,7 @@ function Tabs({ tabs, activeTab = 0 }) {
             if (index === activeTab) {
               return (
                 <TitleButton active key={item.title}>
-                  <TitleText small active>
+                  <TitleText small as="h2" active>
                     {item.title}
                   </TitleText>
                 </TitleButton>
@@ -18,7 +18,7 @@ function Tabs({ tabs, activeTab = 0 }) {
             }
             return (
               <TitleButton key={item.title}>
-                <TitleText small>{item.title}</TitleText>
+                <TitleText small as="h2">{item.title}</TitleText>
               </TitleButton>
             );
           })}

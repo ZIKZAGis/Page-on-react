@@ -1,20 +1,21 @@
 import React from "react";
-import Button from "../button/button";
+import { Ul } from "../elements";
+import { CommentsLi, CommentsButton, Name, Text } from "./styled";
 
 export default function ShowComment ({comments}) {
     if (comments.length > 0) {
         return (
             <>
-                <ul>
+                <Ul>
                     {comments && 
                     comments.map(({id, userName, comment}) => (
-                        <li key={id}>
-                            <b>{userName}</b>
-                            <p>{comment}</p>
-                        </li>
+                        <CommentsLi key={id}>
+                            <Name>{userName}</Name>
+                            <Text>{comment}</Text>
+                        </CommentsLi>
                     ))}
-                </ul>
-                <Button>Показать Ещё</Button>
+                </Ul>
+                <CommentsButton>Показать Ещё</CommentsButton>
             </>
         );
     }
