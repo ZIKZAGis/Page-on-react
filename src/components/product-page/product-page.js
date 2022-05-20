@@ -54,7 +54,7 @@ export default function ProductPage({ product }) {
                             {product.delivery}
                         </DeliveryValue>
                     </ProductInfoLine>
-                    <BuyButton size="large">Купить</BuyButton>
+                    <BuyButton size="large" onClick={() => console.log("Купить")}>Купить</BuyButton>
                     <p>
                         <Popularity count={product.comments.length}/>
                     </p>
