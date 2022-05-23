@@ -1,12 +1,13 @@
 import Button from "../button/button";
 import {Value, StyledCounter} from "./styled"
 
-export default function Counter () {
+export default function Counter ({ className, value, onChange, minValue }) {
+    const isDisbaledMinus = value === minValue;
     return (
-        <StyledCounter>
-            <Button size='small' onClick={() => console.log("Убавить")}>-</Button>
-            <Value>1</Value>
-            <Button size='small' onClick={() => console.log("Прибавить")}>+</Button>
+        <StyledCounter className={className}>
+            <Button disabled={isDisbaledMinus} size='small' onClick={() => onChange && onChange(value - 1)}>-</Button>
+            <Value>{value}</Value>
+            <Button size='small' onClick={() => onChange && onChange(value + 1)}>+</Button>
         </StyledCounter>
     )
 }

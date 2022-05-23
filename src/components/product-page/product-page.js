@@ -15,8 +15,11 @@ import {
     BuyButton,
     DeliveryValue
   } from "./styled";
+import { useState } from "react";
 
 export default function ProductPage({ product }) {
+    const [productCount, setProductCount] = useState(1);
+
     const tabs = [
         {
           title: "Описание",
@@ -43,10 +46,10 @@ export default function ProductPage({ product }) {
                 />
                 <ProductInfo>
                     <ProductInfoLine>
-                        Цена: {" "} <ProductPrice price={product.price} />
+                        Цена: {" "} <ProductPrice price={product.price * productCount} />
                     </ProductInfoLine>
                     <ProductInfoLine>
-                        Колличество: {" "} <PageCounter />
+                        Колличество: {" "} <PageCounter minValue={1} value={productCount} onChange={setProductCount}/>
                     </ProductInfoLine>
                     <ProductInfoLine>
                         <span>Доставка:</span>
@@ -60,7 +63,7 @@ export default function ProductPage({ product }) {
                     </p>
                 </ProductInfo>
             </ProductWrapper>
-            <Tabs tabs={tabs} tabIndex={1} />
+            <Tabs tabs={tabs} />
         </StyledProductPage>
     )
 

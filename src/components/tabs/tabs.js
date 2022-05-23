@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { TitleList, TitleButton, TitleText, Content } from "./styled";
 
-function Tabs({ tabs, activeTab = 0 }) {
+function Tabs({ tabs }) {
+
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
     <div>
       <TitleList>
@@ -9,7 +13,7 @@ function Tabs({ tabs, activeTab = 0 }) {
           tabs.map((item, index) => {
             if (index === activeTab) {
               return (
-                <TitleButton active key={item.title} onClick={() => console.log(item.title)}>
+                <TitleButton active key={item.title} onClick={() => setActiveTab(index)}>
                   <TitleText small as="h2" active>
                     {item.title}
                   </TitleText>
@@ -17,7 +21,7 @@ function Tabs({ tabs, activeTab = 0 }) {
               );
             }
             return (
-              <TitleButton key={item.title} onClick={() => console.log(item.title)}>
+              <TitleButton key={item.title} onClick={() => setActiveTab(index)}>
                 <TitleText small as="h2">{item.title}</TitleText>
               </TitleButton>
             );
