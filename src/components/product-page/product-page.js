@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Title from "../title/title";
 import Image from "../elements/image";
 import ProductPrice from "../price/price";
@@ -15,10 +16,13 @@ import {
     BuyButton,
     DeliveryValue
   } from "./styled";
-import { useState } from "react";
+import PopUp from "../popup/popup";
+import Order from "../order/order";
+
 
 export default function ProductPage({ product }) {
     const [productCount, setProductCount] = useState(1);
+    const [isShowPopup, setIsShowPopup] = useState(false);
 
     const tabs = [
         {
@@ -57,13 +61,20 @@ export default function ProductPage({ product }) {
                             {product.delivery}
                         </DeliveryValue>
                     </ProductInfoLine>
-                    <BuyButton size="large" onClick={() => console.log("Купить")}>Купить</BuyButton>
+                    <BuyButton size="large" onClick={() => setIsShowPopup(true)}>Купить</BuyButton>
                     <p>
                         <Popularity count={product.comments.length}/>
                     </p>
                 </ProductInfo>
             </ProductWrapper>
             <Tabs tabs={tabs} />
+            <PopUp 
+                isShow={isShowPopup}
+                onClose={() => setIsShowPopup(false)}
+                title="Оформление"
+            >
+                <Order />
+            </PopUp>
         </StyledProductPage>
     )
 
