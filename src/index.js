@@ -7,7 +7,7 @@ import ProductPage from './components/product-page/product-page'
 const rootElement = document.getElementById('root')
 ReactDOM.render(
     <ThemeProvider theme={theme}>
-            <ProductPage product={product} />
+            <ProductPage product={product} showInfoInAccordion/>
     </ThemeProvider>,
     rootElement
 );

@@ -18,22 +18,40 @@ import {
   } from "./styled";
 import PopUp from "../popup/popup";
 import Order from "../order/order";
+import Accordion from "../accordion/accordion"
 
+const MAX_TEXT_SIZE = 200;
+const COMMENTS_COUNT = 3;
 
-export default function ProductPage({ product }) {
+export default function ProductPage({ product, showInfoInAccordion }) {
     const [productCount, setProductCount] = useState(1);
     const [isShowPopup, setIsShowPopup] = useState(false);
+    const [isShowAllDescription, setIsShowAllDescription] = useState(false);
+    const [commentsShow, setCommentsShow] = useState(COMMENTS_COUNT);
 
     const tabs = [
         {
-          title: "Описание",
-          content: <Description text={product.description} />
+            title: "Описание",
+            content: (
+                <Description
+                    text={
+                        isShowAllDescription
+                            ? product.description
+                            : product.description.slice(0, MAX_TEXT_SIZE)
+                    }
+                    onShowMore={() => setIsShowAllDescription(!isShowAllDescription)}
+                    isShowAllDescription={isShowAllDescription}
+                />
+            )
         },
         {
-          title: "Комментарии",
-          content: <ShowComment comments={product.comments} />
+            title: "Комментарии",
+            content: <ShowComment 
+                comments={product.comments.slice(0, commentsShow)}
+                onShowMore={() => setCommentsShow(commentsShow + COMMENTS_COUNT)}
+                allCommentsLength={product.comments.length} />
         }
-      ];
+    ];
 
     return(
         <StyledProductPage>
@@ -67,12 +85,11 @@ export default function ProductPage({ product }) {
                     </p>
                 </ProductInfo>
             </ProductWrapper>
-            <Tabs tabs={tabs} />
+            {showInfoInAccordion ? <Accordion items={tabs} /> : <Tabs tabs={tabs} />}
             <PopUp 
                 isShow={isShowPopup}
                 onClose={() => setIsShowPopup(false)}
-                title="Оформление"
-            >
+                title="Оформление">
                 <Order />
             </PopUp>
         </StyledProductPage>

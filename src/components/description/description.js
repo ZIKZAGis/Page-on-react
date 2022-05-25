@@ -1,10 +1,12 @@
 import { DescriptionButton } from './styled';
 
-export default function Description ({text}) {
+export default function Description ({text, onShowMore, isShowAllDescription}) {
     return (
         <>
             {text}
-            <DescriptionButton type="button" onClick={() => console.log("Подробнее")}>Подробнее</DescriptionButton>
+            <DescriptionButton onClick={onShowMore}>
+                {isShowAllDescription ? "Cкрыть" : "Подробнее"}
+            </DescriptionButton>
         </>
     )
 }
