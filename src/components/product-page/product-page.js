@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Title from "../title/title";
-import Image from "../elements/image";
+import Slider from "../slider/slider";
 import ProductPrice from "../price/price";
 import Description from "../description/description";
 import ShowComment from "../comments/comments";
@@ -59,13 +59,7 @@ export default function ProductPage({ product, showInfoInAccordion }) {
                 <Title>{product.name}</Title>
             </Header>
             <ProductWrapper>
-                <Image
-                    width="200"
-                    height="257"
-                    maxWidth="200"
-                    src={product.src}
-                    alt={product.name}
-                />
+                <Slider images={product.images}/>
                 <ProductInfo>
                     <ProductInfoLine>
                         Цена: {" "} <ProductPrice price={product.price * productCount} />
